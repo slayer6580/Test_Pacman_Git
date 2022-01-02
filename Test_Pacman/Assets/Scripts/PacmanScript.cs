@@ -12,13 +12,11 @@ public class PacmanScript : MonoBehaviour
 	private Vector3 direction;
 	private CharacterController controller;
 
-    // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //Input for mouvement
@@ -28,5 +26,13 @@ public class PacmanScript : MonoBehaviour
         direction = (transform.right * moveX + transform.forward * moveY);
 
         controller.Move(direction * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+    	if(collider.gameObject.tag == "Ghost"){
+    		print("mort");
+    	}
+
     }
 }
