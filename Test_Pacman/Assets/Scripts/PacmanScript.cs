@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PacmanScript : MonoBehaviour
 {
+	//private
 	private float moveX;
 	private float moveY;
 
@@ -11,6 +12,9 @@ public class PacmanScript : MonoBehaviour
 	private float speed;
 	private Vector3 direction;
 	private CharacterController controller;
+
+ 	//public 
+	public GameObject gameManager;
 
     void Start()
     {
@@ -28,10 +32,23 @@ public class PacmanScript : MonoBehaviour
         controller.Move(direction * speed * Time.deltaTime);
     }
 
+
     private void OnTriggerEnter(Collider collider)
     {
     	if(collider.gameObject.tag == "Ghost"){
     		print("mort");
+    	}
+
+    	if(collider.gameObject.tag == "Dot")
+    	{
+    		gameManager.GetComponent<GameManagerScript>().EatDot();
+    		collider.gameObject.SetActive(false);
+    	}
+
+    	if(collider.gameObject.tag == "SuperDot")
+    	{
+    		gameManager.GetComponent<GameManagerScript>().EatDot();
+    		collider.gameObject.SetActive(false);
     	}
 
     }
