@@ -41,13 +41,13 @@ public class PacmanScript : MonoBehaviour
 
     	if(collider.gameObject.tag == "Dot")
     	{
-    		gameManager.GetComponent<GameManagerScript>().EatDot();
+    		gameManager.GetComponent<GameManagerScript>().EatDot(false);
     		collider.gameObject.SetActive(false);
     	}
 
     	if(collider.gameObject.tag == "SuperDot")
     	{
-    		gameManager.GetComponent<GameManagerScript>().EatDot();
+    		gameManager.GetComponent<GameManagerScript>().EatDot(true);
     		collider.gameObject.SetActive(false);
     	}
 
