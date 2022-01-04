@@ -22,16 +22,25 @@ public class GhostScript : MonoBehaviour
     [SerializeField]
 	private float respawnSpeed;
 
+    [SerializeField]
+	private float timeInWander;
+    [SerializeField]
+	private float timeInChase;
+
 	[SerializeField]
 	private Material baseColor;
 	[SerializeField]
 	private Material fleeColor;
+    [SerializeField]
+	private Material respawnColor;
 
 	private GameObject player;
 	private GameObject wanderWaypoints;
     private GameObject respawn;
 	private Vector3 position;
 	private bool goingToWaypoint;
+    private MeshRenderer ghostColor;
+    
 
 
 
@@ -40,6 +49,10 @@ public class GhostScript : MonoBehaviour
         player = GameObject.Find("Pacman");
         wanderWaypoints = GameObject.Find("WanderWaypoints");
         respawn = GameObject.Find("Respawn");
+        StartCoroutine("WanderingTime");
+        ghostColor = GetComponent<MeshRenderer>();
+        ghostColor.material = baseColor;
+        agent.speed = normalSpeed;
     }
 
     void Update()
@@ -82,16 +95,16 @@ public class GhostScript : MonoBehaviour
     	
     }
 
+
     private void Chase()
     {
     	agent.SetDestination(player.transform.position);
     }
 
+
     private void Flee()
     {   
-
-        /**/
-
+        ghostColor.material = fleeColor;
         if(goingToWaypoint == false)
     	{
     		goingToWaypoint = true;
@@ -107,16 +120,12 @@ public class GhostScript : MonoBehaviour
     	}
     	agent.SetDestination(position);
 
-    	if(Vector3.Distance(position, transform.position) <= 1)
+    	if(Vector3.Distance(position, transform.position) <= 1f)
     	{
 			goingToWaypoint = false;
     	}
 
-        Debug.DrawRay(position, player.transform.position-transform.position, Color.green);
-        //print(player.transform.position-transform.position);
-        //print(Vector3.Distance(transform.position, player.transform.position));
     }
-
 
 
     public void SuperDot()
@@ -125,19 +134,51 @@ public class GhostScript : MonoBehaviour
         {
             behaviour = state.flee;
             goingToWaypoint = false;
+            ghostColor.material = fleeColor;
         }
     }
 
+
     public void GoToRespawn()
     {
+        ghostColor.material = respawnColor;
         agent.SetDestination(respawn.transform.position);
-        agent.speed = 10f;
-        if(Vector3.Distance(position, transform.position) <= 1)
+        agent.speed = respawnSpeed;
+        if(Vector3.Distance(respawn.transform.position, transform.position) <= 1f)
     	{
+            goingToWaypoint = false;
             behaviour = state.wander;
-			goingToWaypoint = false;
-            agent.speed = 2;
+            agent.speed = normalSpeed;
+            ghostColor.material = baseColor;
     	}
 
     }
+
+    IEnumerator WanderingTime()
+    {
+        if(behaviour == state.chase)
+        {
+            behaviour = state.wander;
+        }
+        yield return new WaitForSeconds(timeInWander);
+        StartCoroutine("ChaseTime");
+
+    }
+
+    IEnumerator ChaseTime()
+    {
+        if(behaviour == state.wander)
+        {
+            behaviour = state.chase;
+        }
+        yield return new WaitForSeconds(timeInChase);
+        StartCoroutine("WanderingTime");
+    }
+
+    public void UpdateToBaseColor(){
+        ghostColor.material = baseColor;
+    }
+
+
+
 }

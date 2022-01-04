@@ -12,13 +12,16 @@ public class PacmanScript : MonoBehaviour
 	private float speed;
 	private Vector3 direction;
 	private CharacterController controller;
+	private float timeSuperDot;
 
  	//public 
 	public GameObject gameManager;
+	public bool superDotMode;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+		timeSuperDot = gameManager.GetComponent<GameManagerScript>().timeSuperDot;
     }
 
     void Update()
@@ -36,7 +39,15 @@ public class PacmanScript : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
     	if(collider.gameObject.tag == "Ghost"){
-    		print("mort");
+			if(superDotMode == true)
+			{
+				collider.gameObject.GetComponent<GhostScript>().behaviour = GhostScript.state.respawn;
+			}
+			else
+			{
+				gameManager.EndGame(false);;
+			}
+    		
     	}
 
     	if(collider.gameObject.tag == "Dot")
@@ -52,4 +63,5 @@ public class PacmanScript : MonoBehaviour
     	}
 
     }
+
 }

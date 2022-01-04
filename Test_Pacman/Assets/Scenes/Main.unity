@@ -1717,6 +1717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   gameManager: {fileID: 619811212}
+  superDotMode: 0
 --- !u!135 &355272282
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2519,6 +2520,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DotsGroup: {fileID: 211453528}
   GhostGroup: []
+  player: {fileID: 0}
+  timeSuperDot: 8
 --- !u!4 &619811214
 Transform:
   m_ObjectHideFlags: 0
@@ -6333,10 +6336,13 @@ MonoBehaviour:
   agent: {fileID: 1310890769}
   behaviour: 0
   fleeDistance: 5
-  normalSpeed: 2
+  normalSpeed: 5
   respawnSpeed: 10
-  baseColor: {fileID: 0}
-  fleeColor: {fileID: 0}
+  timeInWander: 7
+  timeInChase: 15
+  baseColor: {fileID: 2100000, guid: ee7f32fc5aa161f4a859ef1cde75c764, type: 2}
+  fleeColor: {fileID: 2100000, guid: 4e8cfe4e2042c6642aed364edca9c282, type: 2}
+  respawnColor: {fileID: 2100000, guid: 40bd38a2d5cb1954cbc18ada0a777ea8, type: 2}
 --- !u!1 &1345457745
 GameObject:
   m_ObjectHideFlags: 0

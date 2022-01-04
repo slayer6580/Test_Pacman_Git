@@ -5,21 +5,20 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
 	public GameObject DotsGroup;
-
 	public GameObject[] GhostGroup;
+	public GameObject player;
+	public float timeSuperDot;
+
 
 	private int DotsCount;
-    // Start is called before the first frame update
+	private int superDotActive;
+
+
     void Start()
     {
         DotsCount = DotsGroup.transform.childCount;
         GhostGroup = GameObject.FindGameObjectsWithTag("Ghost");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+		player = GameObject.Find("Pacman");
     }
 
     public void EatDot(bool isSuperDot)
@@ -27,7 +26,7 @@ public class GameManagerScript : MonoBehaviour
     	--DotsCount;
     	if(DotsCount == 0)
     	{
-    		//EndGame
+    		EndGame(true);
     	}
 
     	if(isSuperDot == true)
@@ -36,6 +35,36 @@ public class GameManagerScript : MonoBehaviour
     		{
     			GhostGroup[i].GetComponent<GhostScript>().SuperDot();
     		}
+			StartCoroutine("SuperDotMode");
+			superDotActive++;
+			player.GetComponent<PacmanScript>().superDotMode = true;
     	}
     }
+
+	IEnumerator SuperDotMode()
+	{
+		yield return new WaitForSeconds(timeSuperDot);
+		superDotActive--;
+		if(superDotActive <= 0){
+			player.GetComponent<PacmanScript>().superDotMode = false;
+			for(int i = 0; i < GhostGroup.Length; i++)
+    		{
+    			if(GhostGroup[i].GetComponent<GhostScript>().behaviour == GhostScript.state.flee)
+				{
+					GhostGroup[i].GetComponent<GhostScript>().behaviour = GhostScript.state.wander;
+					GhostGroup[i].GetComponent<GhostScript>().UpdateToBaseColor();
+				}
+    		}
+		}
+		
+	}
+
+	public void EndGame(bool victory){
+		if(victory = true){
+
+		}else{
+			
+		}
+		
+	}
 }
