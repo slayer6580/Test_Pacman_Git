@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+	//public
 	public GameObject DotsGroup;
 	public GameObject[] GhostGroup;
 	public GameObject player;
 	public float timeSuperDot;
 
-
+	//private 
 	private int DotsCount;
 	private int superDotActive;
 
@@ -21,12 +23,15 @@ public class GameManagerScript : MonoBehaviour
 		player = GameObject.Find("Pacman");
     }
 
+	/*
+	Manage the count of dots in the level and when its a superdot
+	*/
     public void EatDot(bool isSuperDot)
     {
     	--DotsCount;
     	if(DotsCount == 0)
     	{
-    		EndGame(true);
+    		EndGame();
     	}
 
     	if(isSuperDot == true)
@@ -41,6 +46,9 @@ public class GameManagerScript : MonoBehaviour
     	}
     }
 
+	/*
+	Manage the superdot mode with the ghost ans pacman when PacMan eats a SuperDot
+	*/
 	IEnumerator SuperDotMode()
 	{
 		yield return new WaitForSeconds(timeSuperDot);
@@ -58,13 +66,11 @@ public class GameManagerScript : MonoBehaviour
 		}
 		
 	}
-
-	public void EndGame(bool victory){
-		if(victory = true){
-
-		}else{
-			
-		}
-		
+	
+	/*
+	Change scene to GameOver scene
+	*/
+	public void EndGame(){
+		SceneManager.LoadScene("GameOver");
 	}
 }

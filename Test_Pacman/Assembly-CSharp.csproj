@@ -44,10 +44,10 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>     <Compile Include="Assets\Scripts\DotScript.cs" />
-     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
+  <ItemGroup>     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
      <Compile Include="Assets\Scripts\GhostScript.cs" />
      <Compile Include="Assets\Scripts\PacmanScript.cs" />
+     <Compile Include="Assets\Scripts\SceneScript.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/_GitHub/Test_Pacman_Git/Test_Pacman/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

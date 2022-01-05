@@ -4,42 +4,39 @@ using UnityEngine;
 
 public class GhostScript : MonoBehaviour
 {	
+    //private
 	[SerializeField]
 	private UnityEngine.AI.NavMeshAgent agent;
-
-	public state behaviour;
-	[SerializeField]
-	public enum state 
-	{
-  		wander, chase, flee, respawn
-	}
-
     [SerializeField]
 	private float fleeDistance;
-
     [SerializeField]
 	private float normalSpeed;
     [SerializeField]
 	private float respawnSpeed;
-
     [SerializeField]
 	private float timeInWander;
     [SerializeField]
 	private float timeInChase;
-
 	[SerializeField]
 	private Material baseColor;
 	[SerializeField]
 	private Material fleeColor;
     [SerializeField]
 	private Material respawnColor;
-
 	private GameObject player;
 	private GameObject wanderWaypoints;
     private GameObject respawn;
 	private Vector3 position;
 	private bool goingToWaypoint;
     private MeshRenderer ghostColor;
+
+    //public
+    public state behaviour;
+	[SerializeField]
+	public enum state 
+	{
+  		wander, chase, flee, respawn
+	}
     
 
 
@@ -57,6 +54,9 @@ public class GhostScript : MonoBehaviour
 
     void Update()
     {
+        /*
+        Manage the behaviour of the ghost
+        */
     	switch (behaviour)
         {
         case state.wander:
@@ -78,6 +78,9 @@ public class GhostScript : MonoBehaviour
     }
 
 
+    /*
+    When the ghost is wandering, to go random point on the map
+    */
     private void Wander()
     {
     	if(goingToWaypoint == false)
@@ -95,13 +98,17 @@ public class GhostScript : MonoBehaviour
     	
     }
 
-
+    /*
+    When in chase mode, go to player position
+    */
     private void Chase()
     {
     	agent.SetDestination(player.transform.position);
     }
 
-
+    /*
+    Flee the player when he eats a superdot 
+    */
     private void Flee()
     {   
         ghostColor.material = fleeColor;
@@ -127,7 +134,9 @@ public class GhostScript : MonoBehaviour
 
     }
 
-
+    /*
+    If the ghost is already going for the respawn, change their state to flee
+    */
     public void SuperDot()
     {
         if(behaviour != state.respawn)
@@ -138,7 +147,9 @@ public class GhostScript : MonoBehaviour
         }
     }
 
-
+    /*
+    When the ghost is being touched by pacman while in superdot mode, go to respawn
+    */
     public void GoToRespawn()
     {
         ghostColor.material = respawnColor;
@@ -154,6 +165,9 @@ public class GhostScript : MonoBehaviour
 
     }
 
+    /*
+    After x time of wandering, go to chase mode 
+    */
     IEnumerator WanderingTime()
     {
         if(behaviour == state.chase)
@@ -165,6 +179,9 @@ public class GhostScript : MonoBehaviour
 
     }
 
+    /* 
+    After x time of chasing pacman, got o wandering mode
+    */
     IEnumerator ChaseTime()
     {
         if(behaviour == state.wander)
@@ -175,6 +192,9 @@ public class GhostScript : MonoBehaviour
         StartCoroutine("WanderingTime");
     }
 
+    /* 
+    Actvated after Superdot mode is done
+    */
     public void UpdateToBaseColor(){
         ghostColor.material = baseColor;
     }
