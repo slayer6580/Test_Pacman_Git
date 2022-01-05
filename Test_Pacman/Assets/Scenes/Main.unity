@@ -5732,7 +5732,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1205706070}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.08
   m_Speed: 2
   m_Acceleration: 300
   avoidancePriority: 99
@@ -5758,7 +5758,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1205706071}
-  behaviour: 0
   fleeDistance: 5
   normalSpeed: 3
   respawnSpeed: 10
@@ -5767,6 +5766,7 @@ MonoBehaviour:
   baseColor: {fileID: 2100000, guid: ee7f32fc5aa161f4a859ef1cde75c764, type: 2}
   fleeColor: {fileID: 2100000, guid: 4e8cfe4e2042c6642aed364edca9c282, type: 2}
   respawnColor: {fileID: 2100000, guid: 40bd38a2d5cb1954cbc18ada0a777ea8, type: 2}
+  behaviour: 0
 --- !u!135 &1205706073
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6446,7 +6446,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1310890764}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.08
   m_Speed: 2
   m_Acceleration: 300
   avoidancePriority: 99
@@ -6472,7 +6472,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1310890769}
-  behaviour: 0
   fleeDistance: 5
   normalSpeed: 3
   respawnSpeed: 10
@@ -6481,6 +6480,7 @@ MonoBehaviour:
   baseColor: {fileID: 2100000, guid: c9cc7c78f44897d4c93c09a10c372231, type: 2}
   fleeColor: {fileID: 2100000, guid: 4e8cfe4e2042c6642aed364edca9c282, type: 2}
   respawnColor: {fileID: 2100000, guid: 40bd38a2d5cb1954cbc18ada0a777ea8, type: 2}
+  behaviour: 0
 --- !u!1 &1345457745
 GameObject:
   m_ObjectHideFlags: 0
@@ -8341,7 +8341,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1837859911}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.08
   m_Speed: 2
   m_Acceleration: 300
   avoidancePriority: 99
@@ -8367,7 +8367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1837859912}
-  behaviour: 0
   fleeDistance: 5
   normalSpeed: 3
   respawnSpeed: 10
@@ -8376,6 +8375,7 @@ MonoBehaviour:
   baseColor: {fileID: 2100000, guid: 8d9df70a4f8f04f4bbaaee3c60838055, type: 2}
   fleeColor: {fileID: 2100000, guid: 4e8cfe4e2042c6642aed364edca9c282, type: 2}
   respawnColor: {fileID: 2100000, guid: 40bd38a2d5cb1954cbc18ada0a777ea8, type: 2}
+  behaviour: 0
 --- !u!135 &1837859914
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10163,7 +10163,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2137833060}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.08
   m_Speed: 2
   m_Acceleration: 300
   avoidancePriority: 99
@@ -10189,7 +10189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 2137833061}
-  behaviour: 0
   fleeDistance: 5
   normalSpeed: 3
   respawnSpeed: 10
@@ -10198,6 +10197,7 @@ MonoBehaviour:
   baseColor: {fileID: 2100000, guid: 3894413f579dc734c85c3df310799542, type: 2}
   fleeColor: {fileID: 2100000, guid: 4e8cfe4e2042c6642aed364edca9c282, type: 2}
   respawnColor: {fileID: 2100000, guid: 40bd38a2d5cb1954cbc18ada0a777ea8, type: 2}
+  behaviour: 0
 --- !u!135 &2137833063
 SphereCollider:
   m_ObjectHideFlags: 0
